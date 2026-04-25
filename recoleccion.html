@@ -26,7 +26,6 @@
           <li class="active" role="menuitem"><a href="recoleccion.html" class="nav-link"><i class="fa fa-recycle"></i> Recolección</a></li>
           <li class="active" role="menuitem"><a href="mapas.html" class="nav-link"><i class="fa fa-map"></i> Mapas</a></li>
           <li class="active" role="menuitem"><a href="reportes.html" class="nav-link"><i class="fa fa-file"></i> Reportes</a></li>
-          <li class="active" role="menuitem"><a href="administracion.html" class="nav-link"><i class="fa fa-cog"></i> Administración</a></li>
         </ul>
       </nav>
 
@@ -43,7 +42,7 @@
              }
 
   // Redirigir al login
-  window.location.href = 'login.html';
+  window.location.href = 'index.html';
         }
     </script>
 
@@ -93,35 +92,60 @@
 
         <!-- Formulario agregar recolección -->
         <form id="addRecoForm" style="margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <select name="rutaId" id="selectRuta" required style="min-width:200px"></select>
-          <select name="tipo" required>
-            <option value="Orgánico">Orgánico</option>
-            <option value="Plástico">Plástico</option>
-            <option value="Vidrio">Vidrio</option>
-          </select>
-          <input name="cantidadKg" type="number" step="0.1" placeholder="kg" required style="width:90px" />
-          <input name="fechaISO" type="datetime-local" required />
-          <input name="coords" placeholder="lat,lng" style="width:160px" />
-          <button type="submit" class="btn small">Agregar</button>
-        </form>
+  <!-- Fecha -->
+  <input name="fechaISO" type="datetime-local" required />
+
+  <!-- Ruta -->
+  <select name="rutaId" id="selectRuta" required style="min-width:200px">
+    <option value="">-- Seleccione ruta --</option>
+    <!-- opciones dinámicas desde la API -->
+  </select>
+
+  <!-- Tipo -->
+  <select name="tipo" required>
+    <option value="Orgánico">Orgánico</option>
+    <option value="Plástico">Plástico</option>
+    <option value="Vidrio">Vidrio</option>
+  </select>
+
+  <!-- Cantidad -->
+  <input name="cantidadKg" type="number" step="0.1" placeholder="kg" required style="width:90px" />
+
+  <!-- Coordenadas opcionales -->
+  <input name="coords" placeholder="lat,lng" style="width:160px" />
+
+  <!-- Botón -->
+  <button type="submit" class="btn small">Agregar</button>
+</form>
+
+
       </div>
+
+
 
       <!-- Tabla + gráfico + mapa -->
       <div class="grid">
         <section class="box" style="min-height:420px;">
-          <h3>Historial / Tabla</h3>
-          <div class="table-wrap">
-            <table id="recoTable" class="routes-table">
-              <thead>
-                <tr><th>Fecha</th><th>Ruta</th><th>Tipo</th><th>Cantidad (kg)</th><th>Acciones</th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
+  <h3>Historial / Tabla</h3>
+  <div class="table-wrap">
+    <table id="recoTable" class="routes-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Ruta</th>
+          <th>Tipo</th>
+          <th>Cantidad (kg)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
-          <h3 style="margin-top:12px">Historial (últimos 7 días)</h3>
-          <canvas id="recoChart" style="max-height:220px"></canvas>
-        </section>
+  <h3 style="margin-top:12px">Historial (últimos 7 días)</h3>
+  <canvas id="recoChart" style="max-height:220px"></canvas>
+</section>
+
 
         <aside class="box">
           <h3>Mapa de Recolecciones</h3>

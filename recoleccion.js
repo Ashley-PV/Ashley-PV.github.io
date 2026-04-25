@@ -261,3 +261,20 @@ function debounce(fn, wait) {
     t = setTimeout(() => fn.apply(this, args), wait);
   };
 }
+
+
+const tbody = document.querySelector('#recoTable tbody');
+const date = new Date(fechaISO);
+const diaSemana = date.toLocaleDateString('es-ES', { weekday: 'long' });
+const fecha = date.toLocaleDateString('es-ES');
+const hora = date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+const tr = document.createElement('tr');
+tr.innerHTML = `
+  <td>${diaSemana} ${fecha} ${hora}</td>
+  <td>${nuevaReco.ruta}</td>
+  <td>${nuevaReco.tipo}</td>
+  <td>${nuevaReco.cantidadKg} kg</td>
+  <td><button class="btn small">Ver</button></td>
+`;
+tbody.appendChild(tr);
